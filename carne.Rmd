@@ -92,6 +92,13 @@ carne <- carne |>
             TRUE ~ tipo_de_carne
         )
     ) |>
+    dplyr::rename(
+        Especie = tipo_de_carne,
+        Agua = agua,
+        Proteina = proteina,
+        Gordura = gordura,
+        Minerais = minerais,
+        Kcal = conteudo_energetico) |>
     dplyr::glimpse()
 ```
 
@@ -101,13 +108,13 @@ Plotagem da composição química de diferentes tipos de carne
 
 ```{r}
 carne |>
-    dplyr::select(tipo_de_carne, proteina) |>
+    dplyr::select(Especie, Proteina) |>
     dplyr::filter(
-        !tipo_de_carne == "Gordura Suino" &
-        !tipo_de_carne == "Gordura Bovino") |>
+        !Especie == "Gordura Suino" &
+        !Especie == "Gordura Bovino") |>
     ggplot(
-        aes(x = proteina, y = reorder(
-            tipo_de_carne, proteina), fill = tipo_de_carne
+        aes(x = Proteina, y = reorder(
+            Especie, Proteina), fill = Especie
              )
         ) +
     geom_col() +
@@ -128,6 +135,40 @@ carne |>
         axis.text.x = element_text(size = 16, color = "black"),
         axis.line = element_line(colour = "black"),
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5)
-    ) +
-    theme_bw()
+    )
 ```
+
+
+Plotar os values de composição química agrupados por espécies
+```{r}
+carne |>
+    tidyr::pivot_longer(
+        -Especie, names_to = "comp_quimica", values_to = "value") |>
+    dplyr::filter(
+        !Especie == "Gordura Suino" &
+        !Especie == "Gordura Bovino") |>
+    ggplot(aes(
+        x = Especie, y = value, fill = comp_quimica)
+        ) +
+    geom_col(position = "dodge") +
+    scale_fill_viridis_d() +
+    labs(
+        title = "Composição química da carne",
+        fill = "Composição Quimica",
+        legend.position = "",
+        x = "Espécies",
+        y = "Valores de referencia, ",
+        caption = "By Ítalo Monteiro
+        Fonte: https://pt.wikipedia.org/wiki/Carne (nov, 2022)",
+        legend.title = element_text(size = 18, color = "black"),
+        legend.text = element_text(size = 12, color = "black"),
+        axis.title.x = element_text(size = 16, color = "black"),
+        axis.title.y = element_text(size = 16, color = "black"),
+        axis.text.y = element_text(size = 16, color = "black"),
+        axis.text.x = element_text(size = 16, color = "black"),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5)
+    )
+```
+
+
