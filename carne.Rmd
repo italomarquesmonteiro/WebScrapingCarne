@@ -91,8 +91,13 @@ carne <- carne |>
             tipo_de_carne == "Gordura de Bovino" ~ "Gordura Bovino",
             TRUE ~ tipo_de_carne
         )
-    )
-``` 
+    ) |>
+    dplyr::glimpse()
+```
+
+
+Plotagem da composição química de diferentes tipos de carne
+ - Exemplo com a variável [proteína].
 
 ```{r}
 carne |>
@@ -126,6 +131,3 @@ carne |>
     ) +
     theme_bw()
 ```
-
-
-
