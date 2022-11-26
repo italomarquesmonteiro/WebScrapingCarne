@@ -1,0 +1,131 @@
+---
+title: "Web Scraping: Carnes"
+description: "Raspagem de dados da web sobre carnes"
+author:
+  - name: "Ítalo Marques-Monteiro"
+    affiliation: Anhanguera College
+        Department: Veterinary Medicine
+    affiliation_url: https://www.anhanguera.com
+    lattes: http://lattes.cnpq.br/7174985368517137
+    linkedin: linkedin.com/in/ítalo-monteiro-0b2516144
+    researchgate: https://www.researchgate.net/profile/Italo-Monteiro
+    orcid_id: https://orcid.org/0000-0003-4367-1034
+    kaggle: https://www.kaggle.com/talomarquesmonteiro
+    github: https://github.com/italomarquesmonteiro
+
+date: "2022-11-26"
+output: html_document
+---
+
+o *package* [`{tidyverse}`](https://www.tidyverse.org) possui um ecossistema de packages:
+                           ->[{`ggplot2`}](https://ggplot2.tidyverse.org/).
+                            ->[{`tibble`}](https://tibble.tidyverse.org/).
+                             ->[{`tidyr`}](https://tidyr.tidyverse.org/).
+                              ->[{`dplyr`}](https://dplyr.tidyverse.org/).
+                               ->[{`readr`}](https://readr.tidyverse.org/).
+                                ->[{`purrr`}](https://purrr.tidyverse.org/).
+                                 ->[{`forcats`}](https://forcats.tidyverse.org/).
+```{r}
+library(tidyverse)
+```
+
+Coletar uma tabela em uma pagina da  web. 
+  * Escolhi o tema de carne, portanto vamos usar o [Wikipedia](https://pt.wikipedia.org).
+  * O link de acesso é  https://pt.wikipedia.org/wiki/Carne.
+
+
+o package [`{rvest}`](https://rvest.tidyverse.org/) raspagem de dados da web.
+o package [`{janitor}`](https://github.com/sfirke/janitor) formata e limpa dados
+
+```{r}
+url_carne <- "https://pt.wikipedia.org/wiki/Carne"
+carne <- rvest::read_html(url_carne) |>
+    rvest::html_node(xpath = '//*[@id="mw-content-text"]/div[1]/table[2]') |>
+    rvest::html_table() |>
+    janitor::clean_names("snake")
+```
+
+ Tabela original após 'raspagem', os dados são referentes a *composição química da carne*
+```{r}
+carne |>
+    tibble::view()
+```
+
+  Os dados originais vem em formato de *string* (letras e separação decimal por virgula).
+     Passando para númerico os valores são convertidos [coerção] para NA's.
+         - Usei [str_replace_all] para remover as `strings`.
+         - Usei [gsub] para trocar o separador decimal, e defini como numeric.
+ 
+ 
+
+```{r}
+carne <- carne |>
+    dplyr::mutate(
+        conteudo_energetico = stringr::str_replace_all(
+            conteudo_energetico, " Kcal", ""),
+        agua = stringr::str_replace_all(agua, " g", ""),
+        proteina = stringr::str_replace_all(proteina, " g", ""),
+        gordura = stringr::str_replace_all(gordura, " g", ""),
+        minerais = stringr::str_replace_all(minerais, " g", ""),
+        agua = gsub(",", ".", agua),
+        proteina = gsub(",", ".", proteina),
+        gordura = gsub(",", ".", gordura),
+        minerais = gsub(",", ".", minerais),
+        conteudo_energetico = gsub(",", ".", conteudo_energetico),
+        agua = as.numeric(agua),
+        proteina = as.numeric(proteina),
+        gordura = as.numeric(gordura),
+        minerais = as.numeric(minerais),
+        conteudo_energetico = as.numeric(conteudo_energetico),
+        tipo_de_carne = dplyr::case_when(
+            tipo_de_carne == "Suína" ~ "Suina",
+            tipo_de_carne == "de vitelo" ~ "Vitelo",
+            tipo_de_carne == "de cervo" ~ "Cervo",
+            tipo_de_carne == "de frango (peito)" ~ "Frango-peito",
+            tipo_de_carne == "de frango (coxa)" ~ "Frango-coxa",
+            tipo_de_carne == "de peru (peito)" ~ "Peru-peito",
+            tipo_de_carne == "de peru (coxa)" ~ "Peru-coxa",
+            tipo_de_carne == "pato" ~ "Pato",
+            tipo_de_carne == "ganso" ~ "Ganso",
+            tipo_de_carne == "Gordura de suíno" ~ "Gordura Suino",
+            tipo_de_carne == "Gordura de Bovino" ~ "Gordura Bovino",
+            TRUE ~ tipo_de_carne
+        )
+    )
+``` 
+
+```{r}
+carne |>
+    dplyr::select(tipo_de_carne, proteina) |>
+    dplyr::filter(
+        !tipo_de_carne == "Gordura Suino" &
+        !tipo_de_carne == "Gordura Bovino") |>
+    ggplot(
+        aes(x = proteina, y = reorder(
+            tipo_de_carne, proteina), fill = tipo_de_carne
+             )
+        ) +
+    geom_col() +
+    scale_fill_viridis_d(guide = "none") +
+    labs(
+        title = "Química da carne: Proteína",
+        fill = "",
+        legend.position = "none",
+        x = "Proteína (g)",
+        y = "Tipos de Carne (espécies)",
+        caption = "By Ítalo Monteiro
+        Fonte: https://pt.wikipedia.org/wiki/Carne (nov, 2022)",
+        legend.title = element_text(size = 18, color = "black"),
+        legend.text = element_text(size = 12, color = "black"),
+        axis.title.x = element_text(size = 16, color = "black"),
+        axis.title.y = element_text(size = 16, color = "black"),
+        axis.text.y = element_text(size = 16, color = "black"),
+        axis.text.x = element_text(size = 16, color = "black"),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5)
+    ) +
+    theme_bw()
+```
+
+
+
