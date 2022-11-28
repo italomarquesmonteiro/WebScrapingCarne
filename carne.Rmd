@@ -117,7 +117,7 @@ carne |>
             Especie, Proteina), fill = Especie
              )
         ) +
-    geom_col() +
+    geom_col(col = "black") +
     scale_fill_viridis_d(guide = "none") +
     labs(
         title = "Química da carne: Proteína",
@@ -135,7 +135,8 @@ carne |>
         axis.text.x = element_text(size = 16, color = "black"),
         axis.line = element_line(colour = "black"),
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5)
-    )
+    ) +
+    theme_bw()
 ```
 
 
@@ -150,14 +151,14 @@ carne |>
     ggplot(aes(
         x = Especie, y = value, fill = comp_quimica)
         ) +
-    geom_col(position = "dodge") +
+    geom_col(position = "dodge", col = "black") +
     scale_fill_viridis_d() +
     labs(
         title = "Composição química da carne",
         fill = "Composição Quimica",
         legend.position = "",
         x = "Espécies",
-        y = "Valores de referencia, ",
+        y = "Valores de referencia [g, kcal] ",
         caption = "By Ítalo Monteiro
         Fonte: https://pt.wikipedia.org/wiki/Carne (nov, 2022)",
         legend.title = element_text(size = 18, color = "black"),
@@ -168,7 +169,14 @@ carne |>
         axis.text.x = element_text(size = 16, color = "black"),
         axis.line = element_line(colour = "black"),
         panel.border = element_rect(colour = "black", fill = NA, size = 0.5)
-    )
+    ) +
+    theme_bw()
 ```
+
+```{r}
+carne |>
+    tibble::view()
+```
+ 
 
 
