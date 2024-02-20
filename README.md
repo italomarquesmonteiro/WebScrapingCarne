@@ -37,8 +37,9 @@ Este projeto utiliza a carne como um exemplo prático de aplicação de dados re
 
 ## Dados
 
-A origem dos dados sobre o tema "Carne" para esta análise provém da página da Wikipédia específica sobre o assunto, disponível no link: Wikipédia - Carne. A Wikipédia é uma enciclopédia colaborativa online, e o conteúdo disponível na página é alimentado por colaboradores de diversos backgrounds, incluindo especialistas, pesquisadores e entusiastas do tema.
+Os dados sobre o tema "Carne" para esta análise provém da página da [Wikipédia-Carne](https://pt.wikipedia.org/wiki/Carne).
 
-Ao utilizar dados provenientes da Wikipédia, é importante considerar a natureza colaborativa da plataforma, onde informações podem ser atualizadas e modificadas ao longo do tempo. Recomenda-se verificar a data da última atualização na página para garantir que as informações utilizadas estejam o mais atualizadas possível.
+>[!CAUTION]Ao utilizar dados provenientes da Wikipédia, é importante considerar a natureza colaborativa da plataforma, onde informações podem ser atualizadas e modificadas ao longo do tempo.
 
-A análise desses dados permitirá uma compreensão mais abrangente sobre o tema da carne, cobrindo aspectos como classificações, processos de produção, consumo e outras informações relevantes presentes na fonte fornecida.
+
+A correção do formato dos dados disponíveis possibilitará a manipulação e compreensão mais abrangente sobre o tema da carne, abrangendo aspectos como classificações e visualização gráfica de informações relevantes presentes na fonte fornecida.
