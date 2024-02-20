@@ -1,4 +1,4 @@
-# Web Scraping Carne
+# Web Scraping Carne 
 
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/italomarquesmonteiro/web_scraping_carne/blob/main/LICENSE) 
 
