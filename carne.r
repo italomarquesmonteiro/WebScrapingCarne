@@ -90,4 +90,45 @@ carne |>
         line = element_blank(),
         #axis.text.x = ggtext::element_markdown(
           #face = "bold", family = "Fira Sans",size = 8, color = "gray50", angle = 0, hjust = 1, vjust = 1) # nolint
-    ) 
+    )
+
+
+colors <- "mediumpurple"
+title_text <- glue::glue('Composição química da <span style="color:{colors}">**Carne**</span>') # nolint
+subtitle_text <- glue::glue("")
+caption_text <- glue::glue('**Plot:** **@italo.m.m**<br>**Dados:** Wikepédia(2024)') # nolint
+
+carne |>
+    tidyr::pivot_longer(
+        -Especie, names_to = "comp_quimica", values_to = "value") |>
+    dplyr::filter(
+        !Especie == "Gordura Suino" &
+        !Especie == "Gordura Bovino") |>
+    ggplot(aes(
+        x = comp_quimica, y = value, fill = Especie)
+        ) +
+    geom_col(position = "dodge", col = "black") +
+    #scale_fill_viridis_d(option = "inferno") +
+    labs(
+        title = title_text,
+        fill = "Composição Quimica",
+        legend.position = "",
+        x = "Espécies",
+        y = "Valores de referencia [g, kcal] ",
+        caption = caption_text
+    ) +
+    theme(
+        legend.position = "top",
+        plot.title = ggtext::element_markdown(face = "bold", family = "Source Sans Pro", size = 35, hjust = 0, color = "gray40",), # nolint
+        plot.subtitle = ggtext::element_markdown(face = "bold", family = "Fira Sans Pro", size = 15, color = "gray50", hjust = 0.1), # nolint
+        plot.caption = ggtext::element_markdown(face = "italic", family = "Fira Sans Pro", size = 15, color = "gray50"), # nolint
+        axis.text.y = ggtext::element_markdown(face = "italic", family = "Fira Sans Pro", size = 12, color = "gray50"), # nolint
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.title.x = element_blank(),
+        panel.background = element_rect(fill = "white", color = "white"),
+        plot.background = element_rect(fill = "white"),
+        line = element_blank(),
+        #axis.text.x = ggtext::element_markdown(
+          #face = "bold", family = "Fira Sans",size = 8, color = "gray50", angle = 0, hjust = 1, vjust = 1) # nolint
+    )
