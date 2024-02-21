@@ -51,6 +51,10 @@ carne <- carne |>
     dplyr::glimpse()
 
 
+colors <- "mediumpurple"
+title_text <- glue::glue('Composição química da carne: <span style="color:{colors}">**Proteína**</span>') # nolint
+subtitle_text <- glue::glue("")
+caption_text <- glue::glue('**Plot:** **@italo.m.m**<br>**Dados:** Wikepédia(2024)') # nolint
 
 
 carne |>
@@ -63,23 +67,27 @@ carne |>
             Especie, Proteina), fill = Especie
              )
         ) +
-    geom_col(col = "black") +
-    scale_fill_viridis_d(guide = "none") +
-    labs(
-        title = "Química da carne: Proteína",
-        fill = "",
-        legend.position = "none",
-        x = "Proteína (g)",
-        y = "Tipos de Carne (espécies)",
-        caption = "By Ítalo Monteiro
-        Fonte: https://pt.wikipedia.org/wiki/Carne (nov, 2022)",
-        legend.title = element_text(size = 18, color = "black"),
-        legend.text = element_text(size = 12, color = "black"),
-        axis.title.x = element_text(size = 16, color = "black"),
-        axis.title.y = element_text(size = 16, color = "black"),
-        axis.text.y = element_text(size = 16, color = "black"),
-        axis.text.x = element_text(size = 16, color = "black"),
-        axis.line = element_line(colour = "black"),
-        panel.border = element_rect(colour = "black", fill = NA, size = 0.5)
+    geom_col(fill = "grey70") +
+    geom_text(mapping = aes(label = Proteina),
+             position = position_dodge(1),
+             vjust = 0.5, size = 5, hjust = 1
     ) +
-    theme_bw()
+    labs(
+        title = title_text,
+        caption = caption_text
+    ) +
+    theme(
+        legend.position = "none",
+        plot.title = ggtext::element_markdown(face = "bold", family = "Source Sans Pro", size = 35, hjust = 0, color = "gray40",), # nolint
+        plot.subtitle = ggtext::element_markdown(face = "bold", family = "Fira Sans Pro", size = 15, color = "gray50", hjust = 0.1), # nolint
+        plot.caption = ggtext::element_markdown(face = "italic", family = "Fira Sans Pro", size = 15, color = "gray50"), # nolint
+        axis.text.y = ggtext::element_markdown(face = "italic", family = "Fira Sans Pro", size = 12, color = "gray50"), # nolint
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.title.x = element_blank(),
+        panel.background = element_rect(fill = "white", color = "white"),
+        plot.background = element_rect(fill = "white"),
+        line = element_blank(),
+        #axis.text.x = ggtext::element_markdown(
+          #face = "bold", family = "Fira Sans",size = 8, color = "gray50", angle = 0, hjust = 1, vjust = 1) # nolint
+    )
