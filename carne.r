@@ -90,4 +90,4 @@ carne |>
         line = element_blank(),
         #axis.text.x = ggtext::element_markdown(
           #face = "bold", family = "Fira Sans",size = 8, color = "gray50", angle = 0, hjust = 1, vjust = 1) # nolint
-    )
+    ) 
