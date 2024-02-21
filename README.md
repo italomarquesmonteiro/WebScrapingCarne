@@ -1,4 +1,5 @@
-# Web Scraping Carne 
+# Web Scraping Carne
+## Coleta e Transformação de Dados Não Formatados em Tabelas
 
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/italomarquesmonteiro/web_scraping_carne/blob/main/LICENSE) 
 
@@ -37,10 +38,33 @@ Este projeto utiliza a carne como um exemplo prático de aplicação de dados re
 
 ## Dados
 
-Os dados sobre o tema "Carne" para esta análise provém da página da [Wikipédia-Carne](https://pt.wikipedia.org/wiki/Carne).
+Os dados desse projeto provém da página da [Wikipédia-Carne](https://pt.wikipedia.org/wiki/Carne).
 
 >[!CAUTION]
 >Ao utilizar dados provenientes da Wikipédia, é importante considerar a natureza colaborativa da plataforma, onde informações podem ser atualizadas e modificadas ao longo do tempo.
 
+
+A correção do formato dos dados disponíveis possibilitará a manipulação e compreensão mais abrangente sobre o tema da carne, abrangendo aspectos como classificações e visualização gráfica de informações relevantes presentes na fonte fornecida.
+
+
+
+
+
+
+|Tipo de carne     | Água   | Proteína| Gordura| Minerais | Conteúdo energético
+| :---             | :---:  | :---:   | :---:  | :---:    | :---:
+| Tipo de variável | chr    |    chr  | chr    | chr      |  chr      
+| Bovina           | 75,0   |  22,3   |  1,8   | 1,2      | 116 Kcal
+| de vitelo        | 76,4   |  21,3   |  0,8   | 1,2      | 98 Kcal
+| de cervo         | 75,7   |  21,4   |  1,3   | 1,2      | 103 Kcal
+| de frango (peito)| 75,0   |  22,8   |  0,9   | 1,2      | 105 Kcal
+| de frango (coxa) | 74,7   |  20,6   |  3,1   | ---      | 116 Kcal
+| de peru (peito)  | 73,7   |  24,1   |  1,0   | ----     | 112 Kcal
+| de peru (coxa)   | 74,7   |  20,5   |  3,6   | ---      | 120 Kcal
+| pato             | 73,8   |  18,3   |  6,0   | ---      | 132 Kcal
+| ganso            | 68,3   |  22,8   |  7,1   | ---      | 161 Kcal
+| Gordura de suíno | 7,7    |  2,9    |  88,7  | 0,7      | 812 Kcal
+| Gordura de Bovino| 4,0    |  1,5    |  94,0  | 0,1      | 854 Kcal
+| Suína            | 75,1 g |  22,8 g |  1,2 g | 1,0 g    | 112 Kcal
 
 A correção do formato dos dados disponíveis possibilitará a manipulação e compreensão mais abrangente sobre o tema da carne, abrangendo aspectos como classificações e visualização gráfica de informações relevantes presentes na fonte fornecida.
