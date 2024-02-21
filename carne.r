@@ -91,3 +91,10 @@ carne |>
         #axis.text.x = ggtext::element_markdown(
           #face = "bold", family = "Fira Sans",size = 8, color = "gray50", angle = 0, hjust = 1, vjust = 1) # nolint
     )
+
+
+
+## Índice
+- <a href="#descricao">Descrição Geral</a>
+- <a href="#objetivo">Objetivo</a>
+- <a href="#dados">Dados</a>
