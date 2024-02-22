@@ -49,11 +49,9 @@ A correção do formato dos dados disponíveis possibilitará a manipulação e 
 
 
 
-
-
+R
 |Tipo de carne     | Água   | Proteína| Gordura| Minerais | Conteúdo energético
 | :---             | :---:  | :---:   | :---:  | :---:    | :---:
-| Tipo de variável | chr    |    chr  | chr    | chr      |  chr      
 | Bovina           | 75,0   |  22,3   |  1,8   | 1,2      | 116 Kcal
 | de vitelo        | 76,4   |  21,3   |  0,8   | 1,2      | 98 Kcal
 | de cervo         | 75,7   |  21,4   |  1,3   | 1,2      | 103 Kcal
