@@ -5,7 +5,7 @@ carne <- rvest::read_html(url_carne) |>
     rvest::html_node(xpath = '//*[@id="mw-content-text"]/div[1]/table[2]') |>
     rvest::html_table() |>
     janitor::clean_names("snake")
-
+ 
 
 carne <- carne |>
     dplyr::mutate(
@@ -128,7 +128,5 @@ carne |>
         axis.title.x = element_blank(),
         panel.background = element_rect(fill = "white", color = "white"),
         plot.background = element_rect(fill = "white"),
-        line = element_blank(),
-        #axis.text.x = ggtext::element_markdown(
-          #face = "bold", family = "Fira Sans",size = 8, color = "gray50", angle = 0, hjust = 1, vjust = 1) # nolint
+        line = element_blank()
     )
