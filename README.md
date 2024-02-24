@@ -28,10 +28,9 @@
 
 ## Descrição Geral
 
+As evidências paleontológicas sugerem que a carne desempenhava um papel significativo na dieta dos primeiros seres humanos [McHugo et al.(2019)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6889691/).Ao longo dos anos, a adaptação coevolutiva entre o *Homo sapiens* e espécies como o *Sus scrofa*, o *Ovis aries*, o *Bos taurus*, *Gallus gallus*, entre outros, demonstra que a carne permanece como um alimento de grande importância para os humanos, desempenhando funções essenciais em diversos aspectos.
 
-As evidências paleontológicas indicam que a carne desempenhava um papel significativo na dieta dos primeiros seres humanos [McHugo et al.(2019)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6889691/). Ao longo dos anos, a adaptação coevolutiva entre o *Homo sapiens* e espécies como o *Bos taurus*, o *Sus scrofa*, o *Bos indicus*, *Gallus gallus*, etc., demonstra que a carne continua sendo um alimento de grande importância para o ser humano, desempenhando papéis essenciais em diferentes aspectos.
-
-A carne é composta principalmente por proteínas, minerais, vitaminas, gorduras e água, cujas proporções variam entre as espécies e desempenham um papel crucial na regulação dos processos fisiológicos do organismo. Dessa forma, a variedade de nutrientes presentes na carne desempenha funções específicas, garantindo uma contribuição significativa para a saúde e o bem-estar. Essa perspectiva ressalta a importância da carne na dieta humana, destacando seus benefícios em diferentes aspectos fisiológicos e nutricionais [FAO](https://www.fao.org/3/y2770e/y2770e07.htm).
+A composição química da carne envolve principalmente proteínas, minerais, vitaminas, lipídeos (gorduras) e água, cujas proporções variam entre as espécies e desempenham um papel crucial na regulação dos processos fisiológicos do organismo [FAO](https://www.fao.org/3/T0562E/T0562E02.htm#Meat%20quality). Dessa maneira, a variedade de nutrientes na carne desempenha funções específicas, contribuindo significativamente para a saúde e o bem-estar. Essa perspectiva destaca a relevância da carne na dieta humana, evidenciando seus benefícios em diferentes aspectos fisiológicos e nutricionais, conforme indicado pela [FAO](https://www.fao.org/3/y2770e/y2770e07.htm).
 
 ## Objetivo
 
@@ -47,7 +46,7 @@ Ao enfrentar essas condições, o foco será aplicar técnicas de manipulação 
 Os dados desse projeto provém da página da [Wikipédia-Carne](https://pt.wikipedia.org/wiki/Carne).
 
 >[!CAUTION]
->Ao utilizar dados provenientes da Wikipédia, é importante considerar a natureza colaborativa da plataforma, onde informações podem ser atualizadas e modificadas ao longo do tempo sem validação científica.
+>Ao utilizar dados provenientes da Wikipédia, é importante considerar a natureza colaborativa da plataforma, onde informações podem ser atualizadas e modificadas ao longo do tempo sem revisão por pares.
 
 A seguir, apresentam-se dados da composição química (g/100g) e conteúdo energético (Kcal/100g) médio da carne magra e da gordura de diversos animais após o abate.
 
