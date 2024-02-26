@@ -28,9 +28,9 @@
 
 ## Descrição Geral
 
-As evidências paleontológicas sugerem que a carne desempenhava um papel significativo na dieta dos primeiros seres humanos [McHugo et al.(2019)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6889691/).Ao longo dos anos, a adaptação coevolutiva entre o *Homo sapiens* e espécies como o *Sus scrofa*, o *Ovis aries*, o *Bos taurus*, *Gallus gallus*, entre outros, demonstra que a carne permanece como um alimento de grande importância para os humanos, desempenhando funções essenciais em diversos aspectos.
+As evidências paleontológicas sugerem que a carne desempenhava um papel significativo na dieta dos primeiros seres humanos [McHugo et al. (2019)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6889691/). Ao longo dos anos, a adaptação coevolutiva entre o *Homo sapiens* e espécies como o *Sus scrofa*, o *Ovis aries*, o *Bos taurus*, *Gallus gallus*, entre outros, demonstra que a carne permanece como um alimento de grande importância para os humanos, desempenhando funções essenciais em diversos aspectos.
 
-A composição química da carne envolve principalmente proteínas, minerais, vitaminas, lipídeos (gorduras) e água, cujas proporções variam entre as espécies e desempenham um papel crucial na regulação dos processos fisiológicos do organismo [FAO](https://www.fao.org/3/T0562E/T0562E02.htm#Meat%20quality). Dessa maneira, a variedade de nutrientes na carne desempenha funções específicas, contribuindo significativamente para a saúde e o bem-estar. Essa perspectiva destaca a relevância da carne na dieta humana, evidenciando seus benefícios em diferentes aspectos fisiológicos e nutricionais, conforme indicado pela [FAO](https://www.fao.org/3/y2770e/y2770e07.htm).
+A Organização das Nações Unidas para Agricultura e Alimentação [(FAO)](https://www.fao.org/3/T0562E/T0562E02.htm#Meat%20quality) define que a composição química da carne envolve principalmente proteínas, minerais, vitaminas, lipídeos (gorduras) e água, cujas proporções variam entre as espécies e desempenham um papel crucial na regulação dos processos fisiológicos do organismo. Dessa maneira, a variedade de nutrientes na carne desempenham funções específicas, contribuindo significativamente para a saúde e o bem-estar. Essa perspectiva destaca a relevância da carne na dieta humana, evidenciando seus benefícios em diferentes aspectos fisiológicos e nutricionais, conforme indicado pela [FAO](https://www.fao.org/3/y2770e/y2770e07.htm).
 
 ## Objetivo
 
@@ -48,10 +48,9 @@ Os dados desse projeto provém da página da [Wikipédia-Carne](https://pt.wikip
 >[!CAUTION]
 >Ao utilizar dados provenientes da Wikipédia, é importante considerar a natureza colaborativa da plataforma, onde informações podem ser atualizadas e modificadas ao longo do tempo sem revisão por pares.
 
-A seguir, apresentam-se dados da composição química (g/100g) e conteúdo energético (Kcal/100g) médio da carne magra e da gordura de diversos animais após o abate.
-
 <!--Tabela orginal é de autoria do [Prof. Roberto de Oliveira Roça](https://www.fca.unesp.br/Home/Instituicao/Departamentos/Gestaoetecnologia/Teses/Roca102.pdf) Departamento de Gestão e Tecnologia Agroindustrial da F.C.A. - UNESP - Campus de Botucatu -->
 
+A tabela a seguir apresenta dados da composição química (g/100g) e conteúdo energético (Kcal/100g) médio da carne magra e da gordura de diversos animais após o abate.
 |Tipo de carne     | Água   | Proteína| Gordura| Minerais | Conteúdo energético
 | :---             | :---:  | :---:   | :---:  | :---:    | :---:
 | Bovina           | 75,0   |  22,3   |  1,8   | 1,2      | 116 Kcal
@@ -72,3 +71,7 @@ A correção do formato dos dados disponíveis possibilitará a manipulação e 
 A análise resultante proporcionará insights valiosos sobre à carne, contribuindo para uma compreensão mais aprofundada dos seus componentes químicos.
 
 ## Limpeza
+
+Demosntrado na tabela e apesar de poucas informações (quantidae de dados) temos vários aspectos importantes do dia a dia, com separador decimal com virgula (o R por exemplo endederá isso com uma variavel caracter), assim como, as demais onde temos textos e caracteres especiais.
+
+* 
