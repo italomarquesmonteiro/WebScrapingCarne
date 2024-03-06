@@ -24,7 +24,8 @@
 - <a href="#objetivo">Objetivo</a>
 - <a href="#dados">Dados</a>
 - <a href="#limpeza">Limpeza</a>
-
+- <a href="#tabela">Tabela formatada</a>
+- <a href="#vizualizacao">Visualização</a>
 
 ## Descrição Geral
 
@@ -75,10 +76,11 @@ A análise resultante proporcionará insights valiosos sobre à carne, contribui
 
 Demosntrado na tabela e apesar de poucas informações (quantidae de dados) temos vários aspectos importantes do dia a dia, com separador decimal com virgula (o R por exemplo endederá isso com uma variavel caracter), assim como, as demais onde temos textos e caracteres especiais.
 
-* Utilizei `stringr::str_replace_all()` para remover todos as string;
-* Utilizei `base::gsub()` para trocar *vírgula* (,) por *ponto* (.);
-* Utilizei `dplyr::case_when()` para renomear nome de algumas condições se for `true`;
-* Ultilizei `dplyr::rename()` para renomear as colunas.
+Utilizei:
+*  `stringr::str_replace_all()` para remover todos as string;
+*  `base::gsub()` para trocar *vírgula* (,) por *ponto* (.);
+*  `dplyr::case_when()` para renomear nome de algumas condições se for `true`;
+*  `dplyr::rename()` para renomear as colunas.
 
 ## Tabela formatada
 
