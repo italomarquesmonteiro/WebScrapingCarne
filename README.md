@@ -20,12 +20,15 @@
 
 ## Índice
 
-- <a href="#descricao">Descrição Geral</a>
-- <a href="#objetivo">Objetivo</a>
-- <a href="#dados">Dados</a>
-- <a href="#limpeza">Limpeza</a>
-- <a href="#tabela">Tabela formatada</a>
-- <a href="#visualizacao">Visualização</a>
+<ul>
+        <li><a href="#descricao">Descrição Geral</a></li>
+        <li><a href="#objetivo">Objetivo</a></li>
+        <li><a href="#dados">Dados</a></li>
+        <li><a href="#limpeza">Limpeza</a></li>
+        <li><a href="#tabela">Tabela formatada</a></li>
+        <li><a href="#visualizacao">Visualização</a></li>
+    </ul>
+
 
 ## Descrição Geral
 
