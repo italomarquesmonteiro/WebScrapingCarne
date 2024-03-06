@@ -65,7 +65,7 @@ A tabela a seguir apresenta dados da composição química (g/100g) e conteúdo 
 | Gordura de suíno | 7,7    |  2,9    |  88,7  | 0,7      | 812 Kcal
 | Gordura de Bovino| 4,0    |  1,5    |  94,0  | 0,1      | 854 Kcal
 | Suína            | 75,1 g |  22,8 g |  1,2 g | 1,0 g    | 112 Kcal
-|              
+             
 
 A correção do formato dos dados disponíveis possibilitará a manipulação e compreensão mais abrangente das informações sobre à carne, abrangendo aspectos como classificações e visualização gráfica de informações relevantes presentes na fonte fornecida.
 
