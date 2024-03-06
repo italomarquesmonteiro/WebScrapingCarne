@@ -6,7 +6,7 @@
 
 ##
 
-<img style="width:200px; height:200px;" src="Image/Icon meat.png" alt="Image Meat">
+<img style="width:200px; height:200px;" src=".github/.vscode/Image/Icon meat.png" alt="Image Meat">
 
 # Contatos do autor
 
@@ -65,6 +65,7 @@ A tabela a seguir apresenta dados da composição química (g/100g) e conteúdo 
 | Gordura de suíno | 7,7    |  2,9    |  88,7  | 0,7      | 812 Kcal
 | Gordura de Bovino| 4,0    |  1,5    |  94,0  | 0,1      | 854 Kcal
 | Suína            | 75,1 g |  22,8 g |  1,2 g | 1,0 g    | 112 Kcal
+|              
 
 A correção do formato dos dados disponíveis possibilitará a manipulação e compreensão mais abrangente das informações sobre à carne, abrangendo aspectos como classificações e visualização gráfica de informações relevantes presentes na fonte fornecida.
 
@@ -74,4 +75,31 @@ A análise resultante proporcionará insights valiosos sobre à carne, contribui
 
 Demosntrado na tabela e apesar de poucas informações (quantidae de dados) temos vários aspectos importantes do dia a dia, com separador decimal com virgula (o R por exemplo endederá isso com uma variavel caracter), assim como, as demais onde temos textos e caracteres especiais.
 
-* 
+* Utilizei `stringr::str_replace_all()` para remover todos as string;
+* Utilizei `base::gsub()` para trocar *vírgula* (,) por *ponto* (.);
+* Utilizei `dplyr::case_when()` para renomear nome de algumas condições se for `true`;
+* Ultilizei `dplyr::rename()` para renomear as colunas.
+
+## Tabela formatada
+
+A versão manipulavel da tabela ficou assim:
+
+|Especie       |  Agua |Proteina | Gordura |Minerais  |Kcal
+| :---         | :---: | :---:   | :---:   |  :---:   |:---:
+|Suina         |  75.1 |    22.8 |     1.2 |     1    | 112
+|Bovina        |  75   |    22.3 |     1.8 |     1.2  | 116
+|Vitelo        |  76.4 |    21.3 |     0.8 |     1.2  |  98
+|Cervo         |  75.7 |    21.4 |     1.3 |     1.2  | 103
+|Frango-peito  |  75   |    22.8 |     0.9 |     1.2  | 105
+|Frango-coxa   |  74.7 |    20.6 |     3.1 |          | 116
+|Peru-peito    |  73.7 |    24.1 |     1   |          | 112
+|Peru-coxa     |  74.7 |    20.5 |     3.6 |          | 120
+|Pato          |  73.8 |    18.3 |     6   |          | 132
+|Ganso         |  68.3 |    22.8 |     7.1 |          | 161
+|Gordura Suino |   7.7 |     2.9 |    88.7 |     0.7  | 812
+|Gordura Bovino|   4   |     1.5 |    94   |     0.1  | 854
+|
+
+## Visualização
+
+<img style="width:px; height:px;" src=".github/.vscode/Image/protein.png" alt="Image Protein">
