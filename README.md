@@ -98,7 +98,6 @@ A versão manipulavel da tabela ficou assim:
 |Ganso         |  68.3 |    22.8 |     7.1 |          | 161
 |Gordura Suino |   7.7 |     2.9 |    88.7 |     0.7  | 812
 |Gordura Bovino|   4   |     1.5 |    94   |     0.1  | 854
-|
 
 ## Visualização
 
