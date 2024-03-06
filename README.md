@@ -24,8 +24,8 @@
 - <a href="#objetivo">Objetivo</a>
 - <a href="#dados">Dados</a>
 - <a href="#limpeza">Limpeza</a>
-- <a href="#tabela">Tabela formatada</a>
-- <a href="#vizualizacao">Visualização</a>
+- <a href="#tabela formatada">Tabela formatada</a>
+- <a href="#visualizacao">Visualização</a>
 
 ## Descrição Geral
 
