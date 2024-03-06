@@ -77,8 +77,8 @@ A análise resultante proporcionará insights valiosos sobre à carne, contribui
 Demosntrado na tabela e apesar de poucas informações (quantidae de dados) temos vários aspectos importantes do dia a dia, com separador decimal com virgula (o R por exemplo endederá isso com uma variavel caracter), assim como, as demais onde temos textos e caracteres especiais.
 
 Utilizei:
-*  `stringr::str_replace_all()` para remover todos as string;
-*  `base::gsub()` para trocar *vírgula* (,) por *ponto* (.);
+*  `stringr::str_replace_all()` para remover todos as ``string``;
+*  `base::gsub()` para trocar ``,`` por ``.``;
 *  `dplyr::case_when()` para renomear nome de algumas condições se for `true`;
 *  `dplyr::rename()` para renomear as colunas.
 
