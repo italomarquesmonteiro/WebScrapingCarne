@@ -25,8 +25,8 @@
         <li><a href="#objetivo">Objetivo</a></li>
         <li><a href="#dados">Dados</a></li>
         <li><a href="#limpeza">Limpeza</a></li>
-        <li><a href="#tabela">Tabela formatada</a></li>
-        <li><a href="#visualizacao">Visualização</a></li>
+        <li><a href="#tabela">Tabela</a></li>
+        <li><a href="#dataviz">DataViz</a></li>
     </ul>
 
 
@@ -85,7 +85,7 @@ Utilizei:
 *  `dplyr::case_when()` para renomear nome de algumas condições se for `true`;
 *  `dplyr::rename()` para renomear as colunas.
 
-## Tabela formatada
+## Tabela
 
 A versão manipulavel da tabela ficou assim:
 
@@ -104,6 +104,6 @@ A versão manipulavel da tabela ficou assim:
 |Gordura Suino |   7.7 |     2.9 |    88.7 |     0.7  | 812
 |Gordura Bovino|   4   |     1.5 |    94   |     0.1  | 854
 
-## Visualização
+## DataViz
 
 <img style="width:px; height:px;" src=".github/.vscode/Image/protein.png" alt="Image Protein">
