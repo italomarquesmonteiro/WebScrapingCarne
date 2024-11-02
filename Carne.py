@@ -1,158 +1,76 @@
----
-title: "Web Scraping: Carnes"
-description: "Raspagem de dados da web sobre carnes"
-author: "Ítalo Marques-Monteiro"
-date: "2022-11-26"
-output: html_document
----
-```{r}
-library(tidyverse)
-```
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+import re
+import matplotlib.pyplot as plt
+import seaborn as sns
+from io import StringIO
 
+# Configurações para gráficos
+plt.rcParams.update({'font.size': 12})
 
+# 1. Obtenção e processamento dos dados
+url_carne = "https://pt.wikipedia.org/wiki/Carne"
+response = requests.get(url_carne)
+soup = BeautifulSoup(response.content, 'html.parser')
 
-```{r}
-url_carne <- "https://pt.wikipedia.org/wiki/Carne"
-carne <- rvest::read_html(url_carne) |>
-    rvest::html_node(xpath = '//*[@id="mw-content-text"]/div[1]/table[2]') |>
-    rvest::html_table() |>
-    janitor::clean_names("snake")
-```
+# Extração da tabela específica
+table = soup.select_one('#mw-content-text > div > table:nth-of-type(2)')
+carne = pd.read_html(StringIO(str(table)))[0]
 
- Tabela original após 'raspagem', os dados são referentes a *composição química da carne*
-```{r}
-carne |>
-    tibble::view()
-```
+# Limpeza de dados
+carne.columns = [col.lower().replace(" ", "_") for col in carne.columns]  # Normaliza os nomes das colunas
+carne['conteudo_energetico'] = carne['conteudo_energetico'].str.replace(" Kcal", "").str.replace(",", ".").astype(float)
+carne['agua'] = carne['agua'].str.replace(" g", "").str.replace(",", ".").astype(float)
+carne['proteina'] = carne['proteina'].str.replace(" g", "").str.replace(",", ".").astype(float)
+carne['gordura'] = carne['gordura'].str.replace(" g", "").str.replace(",", ".").astype(float)
+carne['minerais'] = carne['minerais'].str.replace(" g", "").str.replace(",", ".").astype(float)
 
-  Os dados originais vem em formato de *string* (letras e separação decimal por virgula).
-     Passando para númerico os valores são convertidos [coerção] para NA's.
-         - Usei [str_replace_all] para remover as `strings`.
-         - Usei [gsub] para trocar o separador decimal, e defini como numeric.
- 
- 
+# Renomeação e categorização
+rename_map = {
+    "Suína": "Suina",
+    "de vitelo": "Vitelo",
+    "de cervo": "Cervo",
+    "de frango (peito)": "Frango-peito",
+    "de frango (coxa)": "Frango-coxa",
+    "de peru (peito)": "Peru-peito",
+    "de peru (coxa)": "Peru-coxa",
+    "pato": "Pato",
+    "ganso": "Ganso",
+    "Gordura de suíno": "Gordura Suino",
+    "Gordura de Bovino": "Gordura Bovino"
+}
+carne['tipo_de_carne'] = carne['tipo_de_carne'].replace(rename_map)
+carne = carne.rename(columns={
+    'tipo_de_carne': 'especie',
+    'agua': 'agua',
+    'proteina': 'proteina',
+    'gordura': 'gordura',
+    'minerais': 'minerais',
+    'conteudo_energetico': 'kcal'
+})
 
-```{r}
-carne <- carne |>
-    dplyr::mutate(
-        conteudo_energetico = stringr::str_replace_all(
-            conteudo_energetico, " Kcal", ""),
-        agua = stringr::str_replace_all(agua, " g", ""),
-        proteina = stringr::str_replace_all(proteina, " g", ""),
-        gordura = stringr::str_replace_all(gordura, " g", ""),
-        minerais = stringr::str_replace_all(minerais, " g", ""),
-        agua = gsub(",", ".", agua),
-        proteina = gsub(",", ".", proteina),
-        gordura = gsub(",", ".", gordura),
-        minerais = gsub(",", ".", minerais),
-        conteudo_energetico = gsub(",", ".", conteudo_energetico),
-        agua = as.numeric(agua),
-        proteina = as.numeric(proteina),
-        gordura = as.numeric(gordura),
-        minerais = as.numeric(minerais),
-        conteudo_energetico = as.numeric(conteudo_energetico),
-        tipo_de_carne = dplyr::case_when(
-            tipo_de_carne == "Suína" ~ "Suina",
-            tipo_de_carne == "de vitelo" ~ "Vitelo",
-            tipo_de_carne == "de cervo" ~ "Cervo",
-            tipo_de_carne == "de frango (peito)" ~ "Frango-peito",
-            tipo_de_carne == "de frango (coxa)" ~ "Frango-coxa",
-            tipo_de_carne == "de peru (peito)" ~ "Peru-peito",
-            tipo_de_carne == "de peru (coxa)" ~ "Peru-coxa",
-            tipo_de_carne == "pato" ~ "Pato",
-            tipo_de_carne == "ganso" ~ "Ganso",
-            tipo_de_carne == "Gordura de suíno" ~ "Gordura Suino",
-            tipo_de_carne == "Gordura de Bovino" ~ "Gordura Bovino",
-            TRUE ~ tipo_de_carne
-        )
-    ) |>
-    dplyr::rename(
-        Especie = tipo_de_carne,
-        Agua = agua,
-        Proteina = proteina,
-        Gordura = gordura,
-        Minerais = minerais,
-        Kcal = conteudo_energetico) |>
-    dplyr::glimpse()
-```
+# Filtro e ordenação
+meat = carne[~carne['especie'].isin(["Gordura Suino", "Gordura Bovino"])].sort_values(by='proteina', ascending=False)
 
+# 2. Visualização dos dados
+colors = ["#033146", "#003f5c", "#665191", "#2f4b7c", "#a05195", "#d45087", "#f95d6a", "#ff7c43", "#ffa600", "#c9880f"]
+meat['color'] = colors + ["gray70"] * (len(meat) - len(colors))  # Colore os 10 primeiros, restantes em cinza
 
-Plotagem da composição química de diferentes tipos de carne
- - Exemplo com a variável [proteína].
+plt.figure(figsize=(10, 8))
+sns.barplot(
+    x='proteina', y='especie', data=meat, palette=meat['color']
+)
+for i, (value, specie) in enumerate(zip(meat['proteina'], meat['especie'])):
+    plt.text(value + 0.1, i, f'{value}', color='black', va='center')
 
-```{r}
-carne |>
-    dplyr::select(Especie, Proteina) |>
-    dplyr::filter(
-        !Especie == "Gordura Suino" &
-        !Especie == "Gordura Bovino") |>
-    ggplot(
-        aes(x = Proteina, y = reorder(
-            Especie, Proteina), fill = Especie
-             )
-        ) +
-    geom_col(col = "black") +
-    scale_fill_viridis_d(guide = "none") +
-    labs(
-        title = "Química da carne: Proteína",
-        fill = "",
-        legend.position = "none",
-        x = "Proteína (g)",
-        y = "Tipos de Carne (espécies)",
-        caption = "By Ítalo Monteiro
-        Fonte: https://pt.wikipedia.org/wiki/Carne (nov, 2022)",
-        legend.title = element_text(size = 18, color = "black"),
-        legend.text = element_text(size = 12, color = "black"),
-        axis.title.x = element_text(size = 16, color = "black"),
-        axis.title.y = element_text(size = 16, color = "black"),
-        axis.text.y = element_text(size = 16, color = "black"),
-        axis.text.x = element_text(size = 16, color = "black"),
-        axis.line = element_line(colour = "black"),
-        panel.border = element_rect(colour = "black", fill = NA, size = 0.5)
-    ) +
-    theme_bw()
-```
+# Configurações de texto e estilo do gráfico
+title_text = 'Composição química da carne: Proteína'
+caption_text = "Dados: Wikipédia (2024)\nPlot: Ítalo Marques-Monteiro"
+plt.title(title_text, fontsize=20, color="goldenrod")
+plt.xlabel("")
+plt.ylabel("")
+plt.text(0.95, -0.2, caption_text, ha="center", va="top", transform=plt.gca().transAxes, color="gray")
 
-
-Plotar os values de composição química agrupados por espécies
-```{r}
-carne |>
-    tidyr::pivot_longer(
-        -Especie, names_to = "comp_quimica", values_to = "value") |>
-    dplyr::filter(
-        !Especie == "Gordura Suino" &
-        !Especie == "Gordura Bovino") |>
-    ggplot(aes(
-        x = Especie, y = value, fill = comp_quimica)
-        ) +
-    geom_col(position = "dodge", col = "black") +
-    scale_fill_viridis_d() +
-    labs(
-        title = "Composição química da carne",
-        fill = "Composição Quimica",
-        legend.position = "",
-        x = "Espécies",
-        y = "Valores de referencia [g, kcal] ",
-        caption = "By Ítalo Monteiro
-        Fonte: https://pt.wikipedia.org/wiki/Carne (nov, 2022)",
-        legend.title = element_text(size = 18, color = "black"),
-        legend.text = element_text(size = 12, color = "black"),
-        axis.title.x = element_text(size = 16, color = "black"),
-        axis.title.y = element_text(size = 16, color = "black"),
-        axis.text.y = element_text(size = 16, color = "black"),
-        axis.text.x = element_text(size = 16, color = "black"),
-        axis.line = element_line(colour = "black"),
-        panel.border = element_rect(colour = "black", fill = NA, size = 0.5)
-    ) +
-    theme_bw()
-```
-
-```{r}
-carne |>
-    tibble::view()
-```
- 
-
-
-
-
+plt.tight_layout()
+plt.show()
