@@ -106,4 +106,4 @@ A versão manipulavel da tabela ficou assim:
 
 ## DataViz
 
-<img style="width:px; height:px;" src=".github/.vscode/Image/protein.png" alt="Image Protein">
+<img style="width:px; height:px;" src=".vscode/Image/protein.png" alt="Image Protein">
